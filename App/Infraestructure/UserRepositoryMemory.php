@@ -27,6 +27,11 @@ class UserRepositoryMemory implements UserRepository
             throw new UserException($email);
         }
 
-        return $user[0];
+        return current($user);
+    }
+
+    public function getAll(): array
+    {
+        return $this->users;
     }
 }

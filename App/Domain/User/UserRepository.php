@@ -6,4 +6,6 @@ interface UserRepository
     public function addUser(User $user): void;
 
     public function getUser(Email $email): User;
+
+    public function getAll(): array;
 }
