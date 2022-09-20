@@ -3,7 +3,7 @@ namespace App\Infraestructure;
 
 use App\Domain\User\UserPassword;
 
-class UserPassowrdArgonII implements UserPassword
+class UserPasswordArgonII implements UserPassword
 {
     public function encrypt(string $password): string
     {

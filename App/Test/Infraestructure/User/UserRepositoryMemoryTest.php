@@ -3,7 +3,7 @@ namespace App\Test\Infraestructure\User;
 
 use App\Domain\User\Email;
 use App\Domain\User\User;
-use App\Infraestructure\UserPassowrdArgonII;
+use App\Infraestructure\UserPasswordArgonII;
 use App\Infraestructure\UserRepositoryMemory;
 use PHPUnit\Framework\TestCase;
 
@@ -11,7 +11,7 @@ class UserRepositoryMemoryTest extends TestCase
 {
     public function test_add_user()
     {
-        $userPassword = new UserPassowrdArgonII();
+        $userPassword = new UserPasswordArgonII();
         $passowrd = $userPassword->encrypt("123456");
         $user = User::withNameEmailPassword("Thomas", "thomas@gmail.com", $passowrd);
 

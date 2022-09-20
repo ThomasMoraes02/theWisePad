@@ -1,13 +1,13 @@
 <?php 
 namespace App\Test\Domain\Auth;
 
-use App\Domain\Auth\CustomAuthenticate;
-use App\Domain\Auth\TokenUniq;
-use App\Domain\Exceptions\UserException;
 use App\Domain\User\User;
-use App\Infraestructure\UserPassowrdArgonII;
-use App\Infraestructure\UserRepositoryMemory;
 use PHPUnit\Framework\TestCase;
+use App\Infraestructure\TokenUniq;
+use App\Domain\Exceptions\UserException;
+use App\Infraestructure\CustomAuthenticate;
+use App\Infraestructure\UserPasswordArgonII;
+use App\Infraestructure\UserRepositoryMemory;
 
 class LoginTest extends TestCase
 {
@@ -19,7 +19,7 @@ class LoginTest extends TestCase
     public function setUp()
     {
         $this->repository = new UserRepositoryMemory();
-        $this->passwordHash = new UserPassowrdArgonII();
+        $this->passwordHash = new UserPasswordArgonII();
         $this->tokenManager = new TokenUniq();
 
         $passwordUser = $this->passwordHash->encrypt("123456");
@@ -35,13 +35,12 @@ class LoginTest extends TestCase
     public function test_user_login()
     {
         $auth = $this->authenticateUser->auth("thomas@gmail.com", "123456");
-
         $this->assertEquals("thomas@gmail.com", $auth['email']);
     }
 
     public function test_user_not_found()
     {
         $this->expectException(UserException::class);
-        $auth = $this->authenticateUser->auth("caique@gmail.com", "11111");
+        $this->authenticateUser->auth("caique@gmail.com", "11111");
     }
 }

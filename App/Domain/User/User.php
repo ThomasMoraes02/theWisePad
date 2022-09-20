@@ -2,8 +2,6 @@
 namespace App\Domain\User;
 
 use App\Domain\User\Email;
-use App\Domain\User\UserPassword;
-use App\Infraestructure\UserPassowrdArgonII;
 
 class User
 {

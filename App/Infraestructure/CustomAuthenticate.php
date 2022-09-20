@@ -1,5 +1,5 @@
 <?php
-namespace App\Domain\Auth;
+namespace App\Infraestructure;
 
 use App\Domain\User\Email;
 use App\Domain\Auth\TokenManager;
@@ -32,7 +32,7 @@ class CustomAuthenticate implements Authentication
             throw new UserException($email);
         }
 
-        $authPassword = $this->userPassword->verifyPassword($password, (string) $userAuth->getPassword());
+        $authPassword = $this->userPassword->verifyPassword($password, $userAuth->getPassword());
 
         if(!$authPassword) {
             throw new AuthException();

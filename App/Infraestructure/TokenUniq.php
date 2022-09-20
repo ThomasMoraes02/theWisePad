@@ -1,7 +1,7 @@
 <?php 
-namespace App\Domain\Auth;
+namespace App\Infraestructure;
 
-use App\Domain\User\User;
+use App\Domain\Auth\TokenManager;
 
 class TokenUniq implements TokenManager
 {

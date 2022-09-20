@@ -3,7 +3,7 @@ namespace App\Test\Domain;
 
 use App\Domain\User\Email;
 use App\Domain\User\User;
-use App\Infraestructure\UserPassowrdArgonII;
+use App\Infraestructure\UserPasswordArgonII;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
@@ -12,7 +12,7 @@ class UserTest extends TestCase
 
     public function setUp()
     {
-        $passwordHash = new UserPassowrdArgonII();
+        $passwordHash = new UserPasswordArgonII();
         $this->passwordHash = $passwordHash->encrypt("123456");
     }
 
