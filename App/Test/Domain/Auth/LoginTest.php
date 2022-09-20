@@ -3,6 +3,7 @@ namespace App\Test\Domain\Auth;
 
 use App\Domain\Auth\CustomAuthenticate;
 use App\Domain\Auth\TokenUniq;
+use App\Domain\Exceptions\UserException;
 use App\Domain\User\User;
 use App\Infraestructure\UserPassowrdArgonII;
 use App\Infraestructure\UserRepositoryMemory;
@@ -13,6 +14,7 @@ class LoginTest extends TestCase
     private $repository;
     private $passwordHash;
     private $tokenManager;
+    private $authenticateUser;
 
     public function setUp()
     {
@@ -25,15 +27,21 @@ class LoginTest extends TestCase
 
         $this->repository->addUser($user);
 
+        $this->authenticateUser = new CustomAuthenticate($this->repository, $this->passwordHash, $this->tokenManager);
+
         parent::setUp();
     }
 
     public function test_user_login()
     {
-        $authenticateUser = new CustomAuthenticate($this->repository, $this->passwordHash, $this->tokenManager);
-
-        $auth = $authenticateUser->auth("thomas@gmail.com", "123456");
+        $auth = $this->authenticateUser->auth("thomas@gmail.com", "123456");
 
         $this->assertEquals("thomas@gmail.com", $auth['email']);
+    }
+
+    public function test_user_not_found()
+    {
+        $this->expectException(UserException::class);
+        $auth = $this->authenticateUser->auth("caique@gmail.com", "11111");
     }
 }
