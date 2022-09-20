@@ -13,14 +13,14 @@ class User
 
     private $password;
 
-    public function __construct(string $name, Email $email, UserPassword $password)
+    public function __construct(string $name, Email $email, string $password)
     {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
     }
 
-    public static function withNameEmailPassword(string $name, string $email, UserPassword $password)
+    public static function withNameEmailPassword(string $name, string $email, string $password)
     {
         return new User($name, new Email($email), $password);
     }
