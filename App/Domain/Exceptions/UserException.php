@@ -6,10 +6,8 @@ use DomainException;
 
 class UserException extends DomainException
 {
-    public function __construct(string $text)
+    public function __construct(string $email = '')
     {
-        if($text instanceof Email) {
-            parent::__construct("User with e-mail: $text not found");
-        }       
+        parent::__construct("User with e-mail: $email not found");
     }
-} 
+}

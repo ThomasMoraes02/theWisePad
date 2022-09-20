@@ -4,7 +4,6 @@ namespace App\Infraestructure;
 use App\Domain\Exceptions\UserException;
 use App\Domain\User\Email;
 use App\Domain\User\User;
-use App\Domain\User\UserPassword;
 use App\Domain\User\UserRepository;
 
 class UserRepositoryMemory implements UserRepository
