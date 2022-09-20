@@ -25,8 +25,7 @@ class SiginTest extends TestCase
         $this->tokenManager = new TokenUniq();
 
         $authenticateService = new CustomAuthenticate($this->repository, $this->passwordHash, $this->tokenManager);
-
-        $this->siginUp = new SignUp($this->repository, $this->passwordHash, $authenticateService);
+        $this->siginUp = new SignUp($authenticateService);
 
         $userThomas = User::withNameEmailPassword("Thomas", "thomas@gmail.com", "987654");
         $this->repository->addUser($userThomas);

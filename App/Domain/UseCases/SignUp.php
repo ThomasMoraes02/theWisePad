@@ -6,9 +6,6 @@ use App\Domain\Exceptions\AuthException;
 use App\Domain\Exceptions\UserException;
 use App\Domain\User\Email;
 use App\Domain\User\User;
-use App\Domain\User\UserPassword;
-use App\Domain\User\UserRepository;
-use DomainException;
 
 class SignUp implements UseCase
 {
@@ -18,11 +15,13 @@ class SignUp implements UseCase
 
     private $authentication;
 
-    public function __construct(UserRepository $userRepository, UserPassword $userPassword, Authentication $authentication)
+    public function __construct(Authentication $authentication)
     {
-        $this->userRepository = $userRepository;
-        $this->userPassword = $userPassword;
         $this->authentication = $authentication;
+
+        $instances = $this->authentication->getInstances();
+        $this->userRepository = $instances['user_repository'];
+        $this->userPassword = $instances['user_password'];
     }
 
     public function perform($userData)

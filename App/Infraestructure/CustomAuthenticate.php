@@ -45,4 +45,12 @@ class CustomAuthenticate implements Authentication
             "email" => $userAuth->getEmail()
         ];
     }
+
+    public function getInstances(): array
+    {
+        return [
+            'user_repository' => $this->userRepository,
+            'user_password' => $this->userPassword
+        ];
+    }
 }   
